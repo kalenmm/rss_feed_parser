@@ -12,11 +12,10 @@ class UnhandledException(Exception):
 
 
 def rss_parser(
-    xml: str,
-    limit: Optional[int] = None,
-    json: bool = False,
+        xml: str,
+        limit: Optional[int] = None,
+        json: bool = False,
 ) -> List[str]:
-    # feed = feedparser.parse('https://www.upwork.com/ab/feed/jobs/rss?q=web+scraper&sort=recency&paging=0%3B10&api_params=1&securityToken=b81cd9281c89f630d0c13022476f3bea26d22c5590013ab4f43c4e390c86a52d69ff5876be0a6d7b174b8888dab7e7aaa59cd884c771490d6f4c09b0d3b903b2&userUid=955976492232273920&orgUid=955976492236468225')
     result = []
     feed = feedparser.parse(xml)
 
@@ -59,7 +58,6 @@ def rss_parser(
         print(json_temp, "HERE")
         for key, value in dict_temp.items():
             result.append(f"{str(key)}: {str(value)}")
-        return result
     else:
         dict_temp['Feed'] = dict_temp['title']
         dict_temp['Link'] = dict_temp['link']
@@ -91,7 +89,8 @@ def rss_parser(
         Which then can be printed to stdout or written to file as a separate lines.
 
     Examples:
-        >>> xml = '<rss><channel><title>Some RSS Channel</title><link>https://some.rss.com</link><description>Some RSS Channel</description></channel></rss>'
+        >>> xml = '<rss><channel><title>Some RSS Channel</title><link>https://some.rss.com</link><description>Some RSS 
+        Channel</description></channel></rss>'
         >>> rss_parser(xml)
         ["Feed: Some RSS Channel",
         "Link: https://some.rss.com"]
@@ -99,7 +98,6 @@ def rss_parser(
         Feed: Some RSS Channel
         Link: https://some.rss.com
     """
-
 
 
 def main(argv: Optional[Sequence] = None):
@@ -130,6 +128,7 @@ def main(argv: Optional[Sequence] = None):
 if __name__ == "__main__":
     main()
     # xml2 = "https://news.yahoo.com/rss"
-    # xml = "<rss><channel><title>Some RSS Channel</title><link>https://some.rss.com</link><description>Some RSS Channel2</description></channel></rss>"
+    # xml = "<rss><channel><title>Some RSS Channel</title><link>https://some.rss.com</link>
+    # <description>Some RSS Channel2</description></channel></rss>"
     # print("\n".join(rss_parser(xml2, limit=2, json=False)))
     # print(rss_parser(xml2, json=False, limit=2))
